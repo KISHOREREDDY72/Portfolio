@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QA Engineer Portfolio | Palle Yuva Kishore Reddy</title>
+    <meta name="description"
+        content="QA Engineer Portfolio - Yuva Kishore Reddy. Manual & Automation Testing, Selenium, Java, API.">
+    <style>
+        :root {
+            --bg-color: #050505;
+            --text-main: #ffffff;
+            --text-muted: #a0a0a0;
+            --primary: #6366f1;
+            /* Indigo */
+            --secondary: #ec4899;
+            /* Pink */
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-color);
+            background-image: linear-gradient(rgba(5, 5, 5, 0.75), rgba(5, 5, 5, 0.85)), url('background.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Background animated blobs */
+        .blob-bg {
+            position: fixed;
+            top: -20%;
+            left: -10%;
+            width: 50vw;
+            height: 50vw;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
+            z-index: -1;
+            filter: blur(60px);
+            animation: float 20s ease-in-out infinite alternate;
+        }
+
+        .blob-2 {
+            top: auto;
+            bottom: -20%;
+            left: auto;
+            right: -10%;
+            background: radial-gradient(circle, rgba(236, 72, 153, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
+            animation: float 25s ease-in-out infinite alternate-reverse;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            100% {
+                transform: translate(100px, 50px) scale(1.2);
+            }
+        }
+
+        /* Typography */
+        h1,
+        h2,
+        h3,
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem 5%;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            background: rgba(5, 5, 5, 0.6);
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--primary);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -1px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Buttons */
+        .btn-primary,
+        .btn-secondary,
+        .btn-outline {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.5);
+        }
+
+        .btn-secondary {
+            background: var(--glass-bg);
+            color: white;
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            border: 1px solid var(--glass-border);
+            color: white;
+        }
+
+        .btn-outline:hover {
+            background: var(--glass-bg);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Main Layout */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 5%;
+        }
+
+        section {
+            padding: 8rem 0;
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            margin-bottom: 3rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .greeting {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .highlight {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 6rem);
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -2px;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin-bottom: 2.5rem;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        /* Glassmorphism Cards */
+        .glass-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 3rem;
+            backdrop-filter: blur(16px);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .glass-card:hover {
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-5px);
+        }
+
+        /* Skills */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-card {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01));
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .skill-card:hover {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
+            border-color: var(--primary);
+        }
+
+        .skill-card h3 {
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .skill-card p {
+            color: var(--text-muted);
+        }
+
+        /* Projects */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+        }
+
+        .project-card {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .project-image {
+            width: 100%;
+            height: 250px;
+            border-radius: 12px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .gradient-1 {
+            background: linear-gradient(45deg, #4158D0, #C850C0, #FFCC70);
+        }
+
+        .gradient-2 {
+            background: linear-gradient(45deg, #00DBDE, #FC00FF);
+        }
+
+        .project-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-info p {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .project-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            transition: transform 0.3s ease;
+        }
+
+        .project-link:hover {
+            transform: translateX(5px);
+        }
+
+        /* Contact */
+        .contact-card {
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        .social-icon {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-size: 1.1rem;
+        }
+
+        .social-icon:hover {
+            color: var(--primary);
+        }
+
+        /* Contact Form */
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 2rem;
+            text-align: left;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            border-radius: 8px;
+            color: var(--text-main);
+            font-family: 'Outfit', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-muted);
+            border-top: 1px solid var(--glass-border);
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                flex-direction: column-reverse;
+                justify-content: center;
+                text-align: center;
+                padding-top: 8rem;
+                gap: 2rem;
+            }
+
+            .hero-actions {
+                justify-content: center;
+            }
+
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .hero-actions {
+                flex-direction: column;
+            }
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal.show {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 12px;
+            box-shadow: 0 0 30px rgba(99, 102, 241, 0.5);
+            animation: zoomIn 0.3s ease;
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* Text Modal Styles */
+        .text-modal-content {
+            background: var(--bg-color);
+            border: 1px solid var(--glass-border);
+            max-width: 600px;
+            width: 90%;
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            animation: zoomIn 0.3s ease;
+            position: relative;
+            color: var(--text-main);
+        }
+
+        .text-modal-content h3 {
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+
+        .text-modal-content ul {
+            list-style-type: disc;
+            margin-left: 1.5rem;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            text-align: left;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 24px;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close-modal:hover {
+            color: white;
+        }
+    </style>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Space+Grotesk:wght@500;700&display=swap"
+        rel="stylesheet">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function () {
+            emailjs.init({
+                publicKey: "s5p9A-jpfapAUJi0y",
+            });
+        })();
+    </script>
+</head>
+
+<body>
+    <!-- Image Modal -->
+    <div id="imageModal" class="modal">
+        <img class="modal-content" src="WhatsApp Image 2026-05-16 at 9.55.07 PM.jpeg">
+    </div>
+
+    <!-- Project 1 Modal -->
+    <div id="projectModal1" class="modal">
+        <div class="text-modal-content">
+            <span class="close-modal" onclick="closeProjectModal('projectModal1')">&times;</span>
+            <h3>SF Project | Social Media</h3>
+            <ul>
+                <li>Executed manual testing (functional, regression, smoke, sanity, and UAT) for key features such as
+                    posts, feeds, notifications, and user interactions.</li>
+                <li>Conducted API testing using Postman for endpoints including authentication, posts, comments, likes,
+                    and notifications.</li>
+                <li>Logged, tracked, and verified defects in Jira, ensuring timely resolution and improved release
+                    quality.</li>
+                <li>Designed and maintained comprehensive test cases and suites in Kiwi TCMS for full test coverage.
+                </li>
+                <li>Actively participated in Agile ceremonies—sprint planning, daily stand-ups, sprint reviews, and
+                    retrospectives—to drive iterative development.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Project 2 Modal -->
+    <div id="projectModal2" class="modal">
+        <div class="text-modal-content">
+            <span class="close-modal" onclick="closeProjectModal('projectModal2')">&times;</span>
+            <h3>VirSec | Cybersecurity Platform</h3>
+            <ul>
+                <li>Collected and prepared software deployment packages across multiple environments.</li>
+                <li>Managed and versioned builds using JFrog, ensuring release readiness and consistency.</li>
+                <li>Gathered and analyzed deployment data through LLMS for effective monitoring and tracking.</li>
+                <li>Collaborated with QA and development teams to ensure smooth and timely package delivery.</li>
+                <li>Tracked tasks and updates in Jira, maintaining transparent cross-team communication.</li>
+                <li>Participated in Agile ceremonies—including stand-ups, sprint reviews, and retrospectives—to align
+                    deployment and testing efforts.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Project 3 Modal -->
+    <div id="projectModal3" class="modal">
+        <div class="text-modal-content">
+            <span class="close-modal" onclick="closeProjectModal('projectModal3')">&times;</span>
+            <h3>Website Enhancement | CognitivZen Technologies</h3>
+            <ul>
+                <li>Designed and executed both manual and automated test cases to validate website functionality and
+                    performance.</li>
+                <li>Automated functional and regression test suites using Selenium with BDD Cucumber for improved test
+                    efficiency.</li>
+                <li>Analyzed business requirements and prepared detailed test scenarios and documentation.</li>
+                <li>Performed regression testing to ensure stability and consistency after code updates.</li>
+                <li>Managed test cases and test data to maintain accuracy and effective coverage.</li>
+                <li>Partnered with developers to resolve automation issues while tracking and verifying defects in Jira
+                    for prompt resolution.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="blob-bg"></div>
+    <div class="blob-bg blob-2"></div>
+
+    <nav>
+        <div class="logo-container">
+            <a href="#" id="logoAvatar" title="View Full Image">
+                <img src="WhatsApp Image 2026-05-16 at 9.55.07 PM.jpeg" alt="Avatar" class="logo-img"
+                    style="transition: transform 0.3s ease; cursor: pointer;">
+            </a>
+            <a href="#" class="logo" style="text-decoration: none;">PKR.</a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact" class="btn-outline">Let's Talk</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="hero fade-in">
+            <div class="hero-content">
+                <p class="greeting">Hi, I'm <span class="highlight">Palle Yuva Kishore Reddy</span></p>
+                <h1>Software QA Engineer</h1>
+                <p class="subtitle">Specializing in Manual & Automation Testing, Selenium, Java, and API Testing to
+                    deliver high-quality software products.</p>
+                <div class="hero-actions">
+                    <a href="#projects" class="btn-primary">View My Work</a>
+                    <!-- This is where your resume is linked! -->
+                    <a href="Yuva_Kishore_Reddy_QA_Engineer_Resume.pdf" class="btn-secondary" download>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="7 10 12 15 17 10"></polyline>
+                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                        </svg>
+                        Download Resume
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="fade-in">
+            <h2 class="section-title">About Me</h2>
+            <div class="glass-card about-card">
+                <p id="about-content" style="margin-bottom: 1.5rem;">Detail-oriented QA Engineer with experience
+                    specializing in manual and automated testing of web applications using Java and Selenium. I have a
+                    proven track record in enhancing test coverage by 30% and accelerating defect resolution by 40%
+                    through efficient Jira management.</p>
+                <p><strong>Education:</strong> B.Tech in Computer Science and Engineering, JNTUH, Hyderabad.</p>
+                <p style="margin-top: 1rem;"><strong>Experience:</strong> Trainee QA Engineer at CognitivZen
+                    Technologies (Nov 2024 - Nov 2025).</p>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="fade-in">
+            <h2 class="section-title">Expertise</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <h3>Testing Core</h3>
+                    <p>Manual Testing, Automation Testing, Regression, Smoke, Sanity Testing</p>
+                </div>
+                <div class="skill-card">
+                    <h3>Tools & Frameworks</h3>
+                    <p>Selenium, TestNG, BDD Cucumber, Postman, Jira</p>
+                </div>
+                <div class="skill-card">
+                    <h3>Programming</h3>
+                    <p>Java, Python, SDLC & STLC, Agile Methodologies</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="fade-in">
+            <h2 class="section-title">Featured Work</h2>
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <div class="project-card glass-card">
+                    <div class="project-info">
+                        <h3>SF Project | Social Media</h3>
+                        <p>Executed manual & API testing for key features. Designed test suites in TCMS and managed
+                            defects in Jira.</p>
+                        <a href="#" class="project-link" onclick="openProjectModal('projectModal1', event)">View in
+                            Detail &rarr;</a>
+                    </div>
+                </div>
+                <!-- Project 2 -->
+                <div class="project-card glass-card">
+                    <div class="project-info">
+                        <h3>VirSec | Cybersecurity</h3>
+                        <p>Managed builds using JFrog and gathered deployment data via LLMS for monitoring.</p>
+                        <a href="#" class="project-link" onclick="openProjectModal('projectModal2', event)">View in
+                            Detail &rarr;</a>
+                    </div>
+                </div>
+                <!-- Project 3 -->
+                <div class="project-card glass-card">
+                    <div class="project-info" style="margin-top: 0;">
+                        <h3>CognitivZen Website</h3>
+                        <p>Automated functional and regression test suites using Selenium with BDD Cucumber.</p>
+                        <a href="#" class="project-link" onclick="openProjectModal('projectModal3', event)">View in
+                            Detail &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="fade-in">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="glass-card contact-card" style="max-width: 600px; margin: 0 auto;">
+                <p>Currently working as a Software QA Engineer. Let's connect to ensure high-quality software together.
+                </p>
+
+                <form id="contact-form" class="contact-form">
+                    <div class="form-group">
+                        <input type="text" name="name" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea name="message" placeholder="Your Message" rows="4" required></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary" style="width: 100%;">Send Message</button>
+                </form>
+
+                <div class="social-links" style="margin-top: 2rem;">
+                    <a href="https://linkedin.com/in/palle-yuva-kishore-reddy" target="_blank"
+                        class="social-icon">Connect on LinkedIn</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2026 Palle Yuva Kishore Reddy. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Force scroll to top on refresh
+        if (window.location.hash) {
+            window.history.replaceState(null, null, window.location.pathname);
+        }
+        window.scrollTo(0, 0);
+
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(element => {
+            observer.observe(element);
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop, // Removed the -80 offset because padding already accounts for the navbar
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Image Modal Logic
+        const logoImg = document.getElementById('logoAvatar');
+        const modal = document.getElementById('imageModal');
+        let timeoutId;
+
+        logoImg.addEventListener('click', (e) => {
+            e.preventDefault();
+            modal.classList.add('show');
+
+            if (timeoutId) clearTimeout(timeoutId);
+
+            timeoutId = setTimeout(() => {
+                closeModal();
+            }, 2000);
+        });
+
+        modal.addEventListener('click', () => {
+            closeModal();
+        });
+
+        function closeModal() {
+            modal.classList.remove('show');
+            if (timeoutId) clearTimeout(timeoutId);
+        }
+
+        // Project Modals Logic
+        function openProjectModal(id, e) {
+            e.preventDefault();
+            document.getElementById(id).classList.add('show');
+        }
+
+        function closeProjectModal(id) {
+            document.getElementById(id).classList.remove('show');
+        }
+
+        window.addEventListener('click', function (event) {
+            if (event.target.classList.contains('modal') && event.target.id !== 'imageModal') {
+                event.target.classList.remove('show');
+            }
+        });
+
+        // EmailJS form submission
+        const contactForm = document.getElementById('contact-form');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                const btn = contactForm.querySelector('button[type="submit"]');
+                const originalText = btn.innerText;
+                btn.innerText = "Sending...";
+                btn.disabled = true;
+
+                emailjs.sendForm('service_jezze6q', 'template_1ap4xzf', this)
+                    .then(() => {
+                        btn.innerText = "Message Sent!";
+                        contactForm.reset();
+                        
+                        // Scroll back to the top after 1.5 seconds so they can read the success message first
+                        setTimeout(() => {
+                            window.scrollTo({ top: 0, behavior: 'smooth' });
+                        }, 1500);
+
+                        setTimeout(() => {
+                            btn.innerText = originalText;
+                            btn.disabled = false;
+                        }, 3000);
+                    }, (error) => {
+                        console.log('FAILED...', error);
+                        alert("EmailJS Error: " + (error.text || JSON.stringify(error)));
+                        btn.innerText = "Failed to send";
+                        setTimeout(() => {
+                            btn.innerText = originalText;
+                            btn.disabled = false;
+                        }, 3000);
+                    });
+            });
+        }
+    </script>
+</body>
+
+</html>

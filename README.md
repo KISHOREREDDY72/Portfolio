@@ -5,7 +5,7 @@ Welcome to the source code for my professional QA Engineer portfolio website!
 This repository contains a fully responsive, modern web portfolio designed to showcase my experience in manual and automated software testing.
 
 ## 🚀 Live Demo
-*(Replace this text with your live GitHub Pages link once it is deployed!)*
+https://yuvakishorereddy-qa.netlify.app/
 
 ## 🛠️ Built With
 * **HTML5:** Semantic structure and layout.
